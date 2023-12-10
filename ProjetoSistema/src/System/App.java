@@ -26,4 +26,16 @@ public class App implements Serializable {
     public String getLink() {
         return link;
     }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 }
