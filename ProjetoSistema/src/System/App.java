@@ -1,5 +1,5 @@
 
-package projetosistema;
+package System;
 import java.io.Serializable;
 
 public class App implements Serializable {

@@ -1,6 +1,7 @@
 
-package projetosistema;
+package GUI;
 
+import System.App;
 import java.awt.Desktop;
 import javax.swing.JOptionPane;
 import java.io.*;
