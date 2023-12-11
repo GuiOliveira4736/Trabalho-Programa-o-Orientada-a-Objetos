@@ -1,6 +1,9 @@
 
-package projetosistema;
+package GUI;
 
+import System.App;
+import System.DatabaseHandler;
+import java.sql.ResultSet;
 import java.awt.Desktop;
 import javax.swing.JOptionPane;
 import java.io.*;
@@ -17,7 +20,7 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
     public CadastroDeAPP(Principal principal) {
         initComponents();
         carregarDados(); // Carregar dados ao iniciar
-        atualizarTabela();
+        atualizarTabela(null);
          this.principal = principal;
     }
 
@@ -261,7 +264,7 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         App novoApp = new App(novoNome, novaDescricao, novoLink);
         listaDeApps.add(novoApp);
         salvarDados();
-        atualizarTabela();
+        atualizarTabela(null);
 
         // Exibir o link clicável no Principal
         principal.exibirLinkClicavel(novoLink);
@@ -303,9 +306,10 @@ private int appJaExiste(String novoNome, String novoLink) {
                 JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_OPTION) {
+            App rm = listaDeApps.get(selectedRow);
             listaDeApps.remove(selectedRow);
             salvarDados(); // Salvar dados após remover
-            atualizarTabela();
+            atualizarTabela(rm.getNome());
             
         // Limpar os campos de digitação
         jvNome.setText("");
@@ -321,22 +325,26 @@ private int appJaExiste(String novoNome, String novoLink) {
     private void jvListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jvListagemMouseClicked
         // TODO add your handling code here:
         if(jvListagem.getSelectedRow() != -1){
-            
             jvNome.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 0).toString());
-             jvDescricao.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 1).toString());
-              jvLink.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 2).toString());
+            jvDescricao.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 1).toString());
+            jvLink.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_jvListagemMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-          if(jvListagem.getSelectedRow() != -1){
-              jvListagem.setValueAt(jvNome.getText(), jvListagem.getSelectedRow(), 0);
-                jvListagem.setValueAt(jvDescricao.getText(), jvListagem.getSelectedRow(), 1);
-                  jvListagem.setValueAt(jvLink.getText(), jvListagem.getSelectedRow(), 2);
-                  
-      
-          }
+        String nome = jvListagem.getValueAt(jvListagem.getSelectedRow(), 0).toString();
+        if(jvListagem.getSelectedRow() != -1){
+            jvListagem.setValueAt(jvNome.getText(), jvListagem.getSelectedRow(), 0);
+            jvListagem.setValueAt(jvDescricao.getText(), jvListagem.getSelectedRow(), 1);
+            jvListagem.setValueAt(jvLink.getText(), jvListagem.getSelectedRow(), 2);
+        }
+        DatabaseHandler.connect();
+        DatabaseHandler.executeQuery("UPDATE services SET name=\'" + jvNome.getText()
+                        + "\', brief=\'" + jvDescricao.getText()
+                        + "\', href=\'" + jvLink.getText() + "\' WHERE name=\'"
+                        + nome + "\';");
+        DatabaseHandler.disconnect();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jvLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvLinkActionPerformed
@@ -345,29 +353,46 @@ private int appJaExiste(String novoNome, String novoLink) {
 
     //----------------
         private void salvarDados() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("dados.dat"))) {
-            oos.writeObject(listaDeApps);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        try {
+            DatabaseHandler.connect();
+            for (App app : listaDeApps) {
+                String nome = app.getNome();
+                String desc = app.getDescricao();
+                String link = app.getLink();
+                DatabaseHandler.executeQuery("INSERT IGNORE INTO services(name, brief, href) "
+                        + "VALUES (\'" + nome + "\', \'" + desc + "\', "
+                        + "\'" + link + "\');");
+            }
+            DatabaseHandler.disconnect();
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
     }
         
         private void carregarDados() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("dados.dat"))) {
-            listaDeApps = (ArrayList<App>) ois.readObject();
-        } catch (IOException | ClassNotFoundException ex) {
+        try {
+            DatabaseHandler.connect();
+            listaDeApps = DatabaseHandler.executeQuery("SELECT * FROM services");
+            DatabaseHandler.disconnect();
+        } catch (Throwable e) {
             // Se não conseguir carregar os dados, apenas continue com uma lista vazia
+            e.printStackTrace();
             listaDeApps = new ArrayList<>();
         }
-    }
+    } 
 
-    private void atualizarTabela() {
+    private void atualizarTabela(String s) {
         DefaultTableModel tbListagem = (DefaultTableModel) jvListagem.getModel();
         tbListagem.setRowCount(0); // Limpar a tabela antes de adicionar novamente
 
         for (App app : listaDeApps) {
             Object[] dados = {app.getNome(), app.getDescricao(), app.getLink()};
             tbListagem.addRow(dados);
+        }
+        if (s != null){
+            DatabaseHandler.connect();
+            DatabaseHandler.executeQuery("DELETE FROM services WHERE name=\'" + s + "\';");
+            DatabaseHandler.disconnect();
         }
     }
     

@@ -12,7 +12,7 @@
 
 //----------------------------------------------
 
-package projetosistema;
+package GUI;
 import javax.swing.JOptionPane;
 //---------------------------------------------------
 
