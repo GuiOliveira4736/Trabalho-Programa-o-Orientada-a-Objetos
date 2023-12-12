@@ -9,6 +9,7 @@ public class App implements Serializable {
     private String descricao;
     private String link;
     private String linkLogo;
+  
 
     public App(String nome, String descricao, String link, String linkLogo) {
         this.nome = nome;

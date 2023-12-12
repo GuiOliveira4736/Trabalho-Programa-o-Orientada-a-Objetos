@@ -1,15 +1,3 @@
-
-//ARRUMAR:
-//LINK CLICAVEL
-//LIMPAR CAMPO DE DIGITAÇÃO APÓS EXCLUIR E ATUALIZAR.
-//SIMPLIFICAR CODIGO, UTILIZANDO PADRÃO DE PROJETOS
-//OUTRAS PARADA QUE O PROF PEDIU
-//ATUALIZOES DE HOJE:
-//LIMPAR CAMPO DE DIGITAÇÃO APÓS ADICIONAR APP
-//IMPEDIR ADD APP COM NOME E LINK JA EXISTENTES
-//SALVAR DADOS, APOS FECHAR O SISTEMA.(CLASSE APP)
-
-
 //----------------------------------------------
 
 package GUI;
@@ -88,25 +76,21 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
-    
-    
-    
-    
+ 
     private void btAddRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddRemoverActionPerformed
         // TODO add your handling code here:
 abrirJanelaCadastroApp();
 }
 public void abrirJanelaCadastroApp(){
-    CadastroDeAPP janela = new CadastroDeAPP(this);
+    CadastroDeAPP janela = new CadastroDeAPP();
     janela.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_btAddRemoverActionPerformed
 
     private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
         // TODO add your handling code here:
-            sair();
-                        }
+        sair();
+    }
     public void sair(){
       
         dispose();

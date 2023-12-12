@@ -1,4 +1,3 @@
-
 package GUI;
 
 import System.App;
@@ -15,22 +14,13 @@ import javax.swing.table.DefaultTableModel;
 public class CadastroDeAPP extends javax.swing.JFrame {
 
 private ArrayList<App> listaDeApps = new ArrayList<>();
-    private final Principal principal;
 
-    public CadastroDeAPP(Principal principal) {
+    public CadastroDeAPP() {
         initComponents();
         carregarDados(); // Carregar dados ao iniciar
         atualizarTabela(null);
-         this.principal = principal;
-    }
-
-    private CadastroDeAPP() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-
-   
-   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -43,6 +33,7 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         jvLink = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jvLogo = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jvListagem = new javax.swing.JTable();
@@ -52,7 +43,6 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de App");
-        setResizable(false);
 
         jLabel1.setText("NOME:");
 
@@ -72,11 +62,18 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
             }
         });
 
-        jLabel4.setText("LINK DA LOGO:");
+        jLabel4.setText("ICONE:");
 
         jvLogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jvLogoActionPerformed(evt);
+            }
+        });
+
+        jButton4.setLabel("<");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -87,7 +84,6 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jvNome, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
@@ -99,13 +95,18 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jvLink, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                                 .addComponent(jvLogo))
-                            .addComponent(jLabel4))))
+                            .addComponent(jLabel4)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
+                .addComponent(jButton4)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
@@ -129,11 +130,11 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
 
             },
             new String [] {
-                "Nome", "Descrição", "Link"
+                "Nome", "Descrição", "Link", "Icone"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -158,8 +159,8 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jButton1.setText("Adicionar");
@@ -190,36 +191,36 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-//--------------------------------------------------
-     
-    
+//--------------------------------------------------    
    //------------------------------------------ add
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -325,15 +326,6 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
     }//GEN-LAST:event_jButton2ActionPerformed
    
     
-    private void jvListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jvListagemMouseClicked
-        // TODO add your handling code here:
-        if(jvListagem.getSelectedRow() != -1){
-            jvNome.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 0).toString());
-            jvDescricao.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 1).toString());
-            jvLink.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 2).toString());
-        }
-    }//GEN-LAST:event_jvListagemMouseClicked
-
     // refresh
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -342,12 +334,13 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
             jvListagem.setValueAt(jvNome.getText(), jvListagem.getSelectedRow(), 0);
             jvListagem.setValueAt(jvDescricao.getText(), jvListagem.getSelectedRow(), 1);
             jvListagem.setValueAt(jvLink.getText(), jvListagem.getSelectedRow(), 2);
+            jvListagem.setValueAt(jvLogo.getText(), jvListagem.getSelectedRow(), 3);
         }
         DatabaseHandler.connect();
         DatabaseHandler.executeQuery("UPDATE services SET name=\'" + jvNome.getText()
                         + "\', brief=\'" + jvDescricao.getText()
                         + "\', href=\'" + jvLink.getText()
-                        + "\', href=\'" + jvLink.getText() + "\' "
+                        + "\', icon=\'" + jvLogo.getText() + "\' "
                         + "WHERE name=\'" + nome + "\';");
         DatabaseHandler.disconnect();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -363,6 +356,22 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
     private void jvNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jvNomeActionPerformed
+
+    private void jvListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jvListagemMouseClicked
+        // TODO add your handling code here:
+        if(jvListagem.getSelectedRow() != -1){
+            jvNome.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 0).toString());
+            jvDescricao.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 1).toString());
+            jvLink.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 2).toString());
+            jvLogo.setText(jvListagem.getValueAt(jvListagem.getSelectedRow(), 3).toString());
+        }
+    }//GEN-LAST:event_jvListagemMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        new Principal().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     //----------------
         private void salvarDados() {
@@ -401,7 +410,8 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
         tbListagem.setRowCount(0); // Limpar a tabela antes de adicionar novamente
 
         for (App app : listaDeApps) {
-            Object[] dados = {app.getNome(), app.getDescricao(), app.getLink()};
+            //aqui:
+            Object[] dados = {app.getNome(), app.getDescricao(), app.getLink(),app.getLinkLogo()};
             tbListagem.addRow(dados);
         }
         if (s != null){
@@ -413,11 +423,7 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
     
    //----------------------------------------------------------------------------------
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+     
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -435,19 +441,13 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
             java.util.logging.Logger.getLogger(CadastroDeAPP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroDeAPP().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
