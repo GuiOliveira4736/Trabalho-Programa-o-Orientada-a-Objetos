@@ -232,11 +232,12 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
     
    //------------------------------------------ add
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  // Adicionar um novo aplicativo à lista
+
+    // Adicionar um novo aplicativo à lista
     String novoNome = jvNome.getText().trim();
     String novaDescricao = jvDescricao.getText().trim();
     String novoLink = jvLink.getText().trim();
-    String novoLogoLink = jvLogo.getText().trim(); // Novo campo para o link da logo
+    String novoLogoLink = jvLogo.getText().trim();
 
     if (novoNome.isEmpty() || novaDescricao.isEmpty() || novoLink.isEmpty() || novoLogoLink.isEmpty()) {
         JOptionPane.showMessageDialog(
@@ -277,12 +278,14 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         jvNome.setText("");
         jvDescricao.setText("");
         jvLink.setText("");
-        jvLogo.setText("");
+        jvLogo.setText("");  // Limpar o campo da logo
 
         // Fechar a janela de CadastroDeAPP
         //dispose();
     }
 }
+
+
 
 private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
     for (App app : listaDeApps) {
@@ -416,17 +419,6 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
             DatabaseHandler.disconnect();
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
    //----------------------------------------------------------------------------------
     public static void main(String args[]) {
