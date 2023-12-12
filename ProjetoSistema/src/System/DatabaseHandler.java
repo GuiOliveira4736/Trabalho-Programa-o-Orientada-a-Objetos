@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package System;
 import java.util.ArrayList;
 import java.sql.Connection;
@@ -69,11 +66,12 @@ public class DatabaseHandler {
                         String column1 = resultSet.getString("name");
                         String column2 = resultSet.getString("brief");
                         String column3 = resultSet.getString("href");
-                        App novo = new App(column1, column2, column3);
+                        String column4 = resultSet.getString("icon");
+                        App novo = new App(column1, column2, column3, column4);
                         list.add(novo);
 
                         // Do something with the data
-                        System.out.println("Name: " + column1 + ", Desc: " + column2 + ", href: " + column3);
+                        //System.out.println("Name: " + column1 + ", Desc: " + column2 + ", href: " + column3);
                     }
                 }
             }

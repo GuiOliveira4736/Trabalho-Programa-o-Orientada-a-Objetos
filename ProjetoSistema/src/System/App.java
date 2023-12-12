@@ -8,11 +8,18 @@ public class App implements Serializable {
     private String nome;
     private String descricao;
     private String link;
+    private String linkLogo;
+  
 
-    public App(String nome, String descricao, String link) {
+    public App(String nome, String descricao, String link, String linkLogo) {
         this.nome = nome;
         this.descricao = descricao;
         this.link = link;
+        this.linkLogo = linkLogo;
+    }
+
+    public App(String novoNome, String novaDescricao, String novoLink) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public String getNome() {
@@ -27,6 +34,10 @@ public class App implements Serializable {
         return link;
     }
     
+        public String getLinkLogo() {
+        return linkLogo;
+    }
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -37,5 +48,9 @@ public class App implements Serializable {
 
     public void setLink(String link) {
         this.link = link;
+    }
+    
+    public void setLinkLogo(String linkLogo) {
+        this.linkLogo = linkLogo;
     }
 }
