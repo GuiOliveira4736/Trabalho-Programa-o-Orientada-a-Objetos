@@ -228,31 +228,9 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 //--------------------------------------------------
-    //PARTE DO LINK CLICK
-    private javax.swing.JEditorPane jvLinkClicavel;
-
-       private void exibirLinkClicavel() {
-        String link = jvLink.getText().trim();
-        jvLinkClicavel.setContentType("text/html");
-        jvLinkClicavel.setEditable(false);
-        jvLinkClicavel.setText("<html><a href=\"" + link + "\">" + link + "</a></html>");
-        jvLinkClicavel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkClicado(evt);
-            }
-        });
-    }
-
-    private void linkClicado(java.awt.event.MouseEvent evt) {
-        try {
-            Desktop.getDesktop().browse(new URI(jvLink.getText()));
-        } catch (IOException | URISyntaxException ex) {
-            ex.printStackTrace();
-        }
-    }
      
     
-   //------------------------------------------ 
+   //------------------------------------------ add
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
   // Adicionar um novo aplicativo à lista
     String novoNome = jvNome.getText().trim();
@@ -295,9 +273,6 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         salvarDados();
         atualizarTabela(null);
 
-        // Exibir o link clicável no Principal
-        principal.exibirLinkClicavel(novoLink);
-
         // Limpar os campos de digitação
         jvNome.setText("");
         jvDescricao.setText("");
@@ -305,7 +280,7 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         jvLogo.setText("");
 
         // Fechar a janela de CadastroDeAPP
-        dispose();
+        //dispose();
     }
 }
 
@@ -328,6 +303,7 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
     return 0; // Nome, link e link da logo são únicos
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // del
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
     // Remover o aplicativo selecionado da lista
@@ -365,6 +341,7 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
         }
     }//GEN-LAST:event_jvListagemMouseClicked
 
+    // refresh
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String nome = jvListagem.getValueAt(jvListagem.getSelectedRow(), 0).toString();
@@ -401,9 +378,11 @@ private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
                 String nome = app.getNome();
                 String desc = app.getDescricao();
                 String link = app.getLink();
-                DatabaseHandler.executeQuery("INSERT IGNORE INTO services(name, brief, href) "
+                String icon = app.getLinkLogo();
+                DatabaseHandler.executeQuery("INSERT IGNORE INTO services(name, brief, href, icon) "
                         + "VALUES (\'" + nome + "\', \'" + desc + "\', "
-                        + "\'" + link + "\');");
+                        + "\'" + link + "\'"
+                        + ", \'" + icon + "\');");
             }
             DatabaseHandler.disconnect();
         } catch (Throwable e) {
