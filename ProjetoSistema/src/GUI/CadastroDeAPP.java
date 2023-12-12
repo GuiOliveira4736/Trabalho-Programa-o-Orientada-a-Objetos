@@ -38,15 +38,17 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jvNome = new javax.swing.JTextField();
         jvDescricao = new javax.swing.JTextField();
         jvLink = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jvLogo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jvListagem = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de App");
@@ -58,24 +60,9 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
 
         jLabel3.setText("LINK:");
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jvNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Atualizar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jvNomeActionPerformed(evt);
             }
         });
 
@@ -85,40 +72,46 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
             }
         });
 
+        jLabel4.setText("LINK DA LOGO:");
+
+        jvLogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jvLogoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(165, 165, 165))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
-                .addGap(12, 12, 12)
+                        .addComponent(jvNome, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jvDescricao)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(91, 91, 91))
+                        .addComponent(jLabel4)
+                        .addGap(112, 112, 112))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jvNome, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jvDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jvLink, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jvLink, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(jvLogo))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,19 +119,20 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jvLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jvDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jvNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(7, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jvDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jvLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jvListagem.setModel(new javax.swing.table.DefaultTableModel(
@@ -174,8 +168,31 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
         );
+
+        jButton1.setText("Adicionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Atualizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,11 +202,24 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -220,24 +250,17 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
             ex.printStackTrace();
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
     
    //------------------------------------------ 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
   // Adicionar um novo aplicativo à lista
-   String novoNome = jvNome.getText().trim();
+    String novoNome = jvNome.getText().trim();
     String novaDescricao = jvDescricao.getText().trim();
     String novoLink = jvLink.getText().trim();
+    String novoLogoLink = jvLogo.getText().trim(); // Novo campo para o link da logo
 
-    if (novoNome.isEmpty() || novaDescricao.isEmpty() || novoLink.isEmpty()) {
+    if (novoNome.isEmpty() || novaDescricao.isEmpty() || novoLink.isEmpty() || novoLogoLink.isEmpty()) {
         JOptionPane.showMessageDialog(
                 this,
                 "Por favor, preencha todos os campos para adicionar um novo aplicativo.",
@@ -246,8 +269,8 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         return;
     }
 
-    // Verificar se o nome e o site já existem na lista
-    int resultadoVerificacao = appJaExiste(novoNome, novoLink);
+    // Verificar se o nome, o site e o link da logo já existem na lista
+    int resultadoVerificacao = appJaExiste(novoNome, novoLink, novoLogoLink);
     if (resultadoVerificacao == 1) {
         JOptionPane.showMessageDialog(
                 this,
@@ -260,8 +283,14 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
                 "Já existe um aplicativo com o mesmo Link!",
                 "Erro ao Adicionar",
                 JOptionPane.ERROR_MESSAGE);
+    } else if (resultadoVerificacao == 3) {
+        JOptionPane.showMessageDialog(
+                this,
+                "Já existe um aplicativo com o mesmo Link da Logo!",
+                "Erro ao Adicionar",
+                JOptionPane.ERROR_MESSAGE);
     } else {
-        App novoApp = new App(novoNome, novaDescricao, novoLink);
+        App novoApp = new App(novoNome, novaDescricao, novoLink, novoLogoLink);
         listaDeApps.add(novoApp);
         salvarDados();
         atualizarTabela(null);
@@ -273,15 +302,16 @@ private ArrayList<App> listaDeApps = new ArrayList<>();
         jvNome.setText("");
         jvDescricao.setText("");
         jvLink.setText("");
+        jvLogo.setText("");
 
         // Fechar a janela de CadastroDeAPP
         dispose();
     }
 }
 
-private int appJaExiste(String novoNome, String novoLink) {
+private int appJaExiste(String novoNome, String novoLink, String novoLinkLogo) {
     for (App app : listaDeApps) {
-        // Comparar os nomes e links desconsiderando maiúsculas e minúsculas
+        // Comparar os nomes, links e links da logo desconsiderando maiúsculas e minúsculas
         if (app.getNome().equalsIgnoreCase(novoNome)) {
             return 1; // Apenas o nome já existe
         }
@@ -289,9 +319,13 @@ private int appJaExiste(String novoNome, String novoLink) {
         if (app.getLink().equalsIgnoreCase(novoLink)) {
             return 2; // Apenas o link já existe
         }
+
+        if (app.getLinkLogo().equalsIgnoreCase(novoLinkLogo)) {
+            return 3; // Apenas o link da logo já existe
+        }
     }
 
-    return 0; // Nome e link são únicos
+    return 0; // Nome, link e link da logo são únicos
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -350,6 +384,14 @@ private int appJaExiste(String novoNome, String novoLink) {
     private void jvLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvLinkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jvLinkActionPerformed
+
+    private void jvLogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvLogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jvLogoActionPerformed
+
+    private void jvNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jvNomeActionPerformed
 
     //----------------
         private void salvarDados() {
@@ -447,12 +489,14 @@ private int appJaExiste(String novoNome, String novoLink) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jvDescricao;
     private javax.swing.JTextField jvLink;
     private javax.swing.JTable jvListagem;
+    private javax.swing.JTextField jvLogo;
     private javax.swing.JTextField jvNome;
     // End of variables declaration//GEN-END:variables
 }
